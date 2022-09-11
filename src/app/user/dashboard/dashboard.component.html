@@ -1,0 +1,69 @@
+<div class="watermark" [ngStyle]="{backgroundImage:'url('+ imagSource +')'}">
+
+  <div fxLayoutAlign="center center">
+    <h2 style="color:white;   text-transform: uppercase;">
+      Welcome to Carib Condos Portal</h2>
+  </div>
+
+  <!-- <div *ngIf="userService.castUser$ | async as permits" fxLayoutGap="10px"  fxLayout="row" fxLayoutAlign="end " > -->
+
+  <div *ngIf="userService.castUser$ | async as permits; ">
+
+    <div *ngIf="!permits.isActive">
+          <br>
+          <br>
+          <br>
+          <br>
+      <div fxLayoutAlign="center center">
+        <h2 style="color:white;   background-color:black; padding:40px">
+          Please login to access your account
+        </h2>
+      </div>
+    </div>
+
+
+    <div *ngIf="permits.isManager" fxLayout="row" fxLayoutAlign="space-around  center" style="padding-top: 80px;">
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <button mat-raised-button color="primary" routerLink="/admin">Admin Console</button>
+        <button mat-raised-button color="primary" routerLink="/admin/usermanage">User Management </button>
+        <button mat-raised-button color="primary" routerLink="/admin/condomanage">Condo Management </button>
+        <button mat-raised-button color="primary" routerLink="/admin/quickbooks">Quickbooks </button>
+        <button mat-raised-button color="primary" routerLink="/admin/systemadmin">System Admin </button>
+        <button mat-raised-button color="primary" routerLink="/admin/paymentadmin">Payment Admin </button>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <button mat-raised-button color="primary" routerLink="/payment">Payments Console</button>
+        <button mat-raised-button color="primary" routerLink="/payment/paylog">Payment logger </button>
+        <button mat-raised-button color="primary" routerLink="/payment/payportal">Payment portal</button>
+      </div>
+    </div>
+
+    <div *ngIf="permits.isOwner" fxLayout="row" fxLayoutAlign="space-around  center" style="padding-top: 80px;">
+
+      <mat-card class="pay">
+        <mat-card-header>
+          <mat-card-title>
+            <h4>Maintenance Payments</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <app-paytable></app-paytable>
+
+      </mat-card>
+
+      <mat-card class="pay">
+        <mat-card-header>
+          <mat-card-title>
+            <h4>CESS Payments</h4>
+          </mat-card-title>
+        </mat-card-header>
+        <app-paytable></app-paytable>
+
+      </mat-card>
+
+    </div>
+  </div>
+
+
+
+
+</div>
